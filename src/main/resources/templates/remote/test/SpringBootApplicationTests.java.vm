@@ -1,0 +1,25 @@
+package ${package}.${moduleName};
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+/**
+ * <p>
+ *   项目--${moduleName}
+ * </p>
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class ${springBootName}ApplicationTests {
+
+    @Test
+    public void contextLoads() {
+    }
+
+}

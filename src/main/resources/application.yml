@@ -1,0 +1,20 @@
+server:
+  port: 1201
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.200.125:3306/demo_app1_db?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useAffectedRows=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true
+    username: root
+    password: abcd1234
+    type: com.alibaba.druid.pool.DruidDataSource
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  resources:
+    static-locations: classpath:/static/,classpath:/views/
+# Mybatis配置
+mybatis:
+    mapperLocations: classpath:mapper/**/*.xml

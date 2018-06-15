@@ -1,0 +1,87 @@
+package ${package}.${moduleName}.Controller;
+
+import java.util.Arrays;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+import ${package}.${moduleName}.domain.entity.${className}Entity;
+import ${package}.${moduleName}.service.${className}Service;
+import ${mainPath}.${moduleName}.utils.PageUtils;
+import ${mainPath}.${moduleName}.utils.Response;
+
+
+/**
+ * <p>
+ *  ${comments}
+ * </p>
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@Api("${comments}接口文档")
+@RestController
+@RequestMapping("${moduleName}/${pathName}")
+public class ${className}Endpoint {
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+    /**
+     * 列表
+     */
+    @ApiOperation(value = "获取 ${comments} 列表}")
+    @GetMapping("/list")
+    public Response list(@RequestParam Map<String, Object> params) {
+        PageUtils page = ${classname}Service.queryPage(params);
+
+        return Response.ok().put("page", page);
+    }
+
+
+    /**
+     * 信息
+     */
+    @ApiOperation(value = "获取 ${comments} 信息}")
+    @GetMapping("/info/{${pk.attrname}}")
+    public Response info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}) {
+            ${className}Entity ${classname} = ${classname}Service.selectById(${pk.attrname});
+        return Response.ok().put("${classname}", ${classname});
+    }
+
+    /**
+     * 保存
+     */
+    @ApiOperation(value = "保存 ${comments} 信息")
+    @PostMapping("/save")
+    public Response save(@RequestBody${className}Entity ${classname}) {
+            ${classname}Service.insert(${classname});
+
+        return Response.ok();
+    }
+
+    /**
+     * 修改
+     */
+    @ApiOperation(value = "修改 ${comments} 信息}")
+    @PutMapping("/update")
+    public Response update(@RequestBody${className}Entity ${classname}) {
+            ${classname}Service.updateAllColumnById(${classname});//全部更新
+        return Response.ok();
+    }
+
+    /**
+     * 删除
+     */
+    @ApiOperation(value = "删除 ${comments} 信息}")
+    @DeleteMapping("/delete")
+    public Response delete(@RequestBody ${pk.attrType}[]${pk.attrname}s) {
+            ${classname}Service.deleteBatchIds(Arrays.asList(${pk.attrname}s));
+
+        return Response.ok();
+    }
+
+}

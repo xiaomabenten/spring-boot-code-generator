@@ -1,0 +1,27 @@
+package ${package}.${moduleName};
+
+import com.uoko.plugins.swagger.EnableSwagger2Doc;
+import org.mybatis.spring.annotation.MapperScan;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * <p>
+ *   项目--${moduleName}
+ * </p>
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@EnableSwagger2Doc
+@SpringBootApplication
+@MapperScan("${package}.${moduleName}.dao")
+public class ${springBootName}Application{
+
+public static void main(String[]args){
+        SpringApplication.run(${springBootName}Application.class,args);
+        }
+
+}
