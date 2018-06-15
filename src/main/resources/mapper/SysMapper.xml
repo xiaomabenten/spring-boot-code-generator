@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.uoko.generator.dao.SysMapper">
+<mapper namespace="cc.uman.generator.dao.SysMapper">
     <select id="queryList" resultType="java.util.Map">
         select table_name tableName, engine, table_comment tableComment, create_time createTime from
         information_schema.tables
