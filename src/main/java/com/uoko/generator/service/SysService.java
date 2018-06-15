@@ -9,7 +9,7 @@ import java.util.Map;
  * </p>
  *
  * @author shaohua
- * Email shaohua@uoko.com
+ * Email xiaomabenten@gmail.com
  * created by 2018/6/13
  */
 public interface SysService {

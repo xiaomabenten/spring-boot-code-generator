@@ -6,7 +6,7 @@ package com.uoko.generator.util;
  * </p>
  *
  * @author shaohua
- * Email shaohua@uoko.com
+ * Email xiaomabenten@gmail.com
  * created by 2018/6/14
  */
 public class RRException extends RuntimeException {

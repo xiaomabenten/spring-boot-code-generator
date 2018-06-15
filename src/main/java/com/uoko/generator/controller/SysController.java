@@ -27,7 +27,7 @@ import java.util.Map;
  * </p>
  *
  * @author shaohua
- * Email shaohua@uoko.com
+ * Email xiaomabenten@gmail.com
  * created by 2018/6/13
  */
 @Api("自动生成代码接口")

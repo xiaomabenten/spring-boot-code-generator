@@ -10,7 +10,7 @@ import java.util.Map;
  * </p>
  *
  * @author shaohua
- * Email shaohua@uoko.com
+ * Email xiaomabenten@gmail.com
  * created by 2018/6/14
  */
 public class Query extends LinkedHashMap<String, Object> {
