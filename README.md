@@ -5,6 +5,8 @@
    1. 修改 generator.properties文件
    
       ![修改配置](/image/generator.jpg "修改配置")
+      
+      ![修改SpringBoot配置](/image/menu.saveimg.savepath20180615161243.jpg "修改配置")
    
    2. 启动SpringBoot
    3. 打开浏览器，输入http://127.0.0.1:1010/
