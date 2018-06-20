@@ -6,7 +6,7 @@
     <groupId>${package}.${moduleName}</groupId>
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
-    <packaging>${description}</packaging>
+    <packaging>jar</packaging>
 
     <name>${artifactId}</name>
     <description>${description}</description>
