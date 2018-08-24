@@ -31,6 +31,7 @@
         <fastjson.version>1.2.31</fastjson.version>
         <velocity.version>1.7</velocity.version>
         <swagger-spring-boot-starter.version>1.7.1.RELEASE</swagger-spring-boot-starter.version>
+        <sqljdbc4.version>4.0</sqljdbc4.version>
     </properties>
 
     <dependencies>
@@ -63,6 +64,11 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>${sqljdbc4.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.uman.generator.dao.SqlServerSysMapper">
+    <select id="queryList" resultType="java.util.Map">
+        SELECT T.name as tableName ,T.create_date as createTime
+        FROM sys.tables T
+        <if test="tableName != null and tableName.trim() != ''">
+            and T.name like concat('%', #{tableName}, '%')
+        </if>
+        ORDER BY create_date DESC
+        <if test="offset != null and limit != null">
+            offset #{offset} rows fetch next #{limit} rows only
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="java.lang.Integer">
+        SELECT count(*) FROM sys.tables T
+        <if test="tableName != null and tableName.trim() != ''">
+            and table_name like concat('%', #{tableName}, '%')
+        </if>
+    </select>
+
+    <select id="queryTable" resultType="java.util.Map">
+       SELECT T.name as tableName ,T.create_date as createTime,convert(varchar(100),P.value) as tableComment
+        FROM sys.tables T LEFT JOIN sys.extended_properties P ON P.minor_id = T.object_id WHERE T.name = #{tableName}
+    </select>
+
+    <select id="queryColumns" resultType="java.util.Map">
+        SELECT col.colorder AS num , col.name AS columnName , convert(varchar(100),ep.value) AS columnComment , t.name AS dataType ,
+col.length AS columnLength ,
+CASE WHEN EXISTS ( SELECT 1 FROM dbo.sysindexes si INNER JOIN dbo.sysindexkeys sik ON si.id = sik.id AND si.indid = sik.indid INNER JOIN
+dbo.syscolumns sc ON sc.id = sik.id AND sc.colid = sik.colid INNER JOIN dbo.sysobjects so ON so.name = si.name AND so.xtype = convert(varchar(10),'PK') WHERE sc.id = col.id AND sc.colid = col.colid ) THEN convert(varchar(10),'PRI') ELSE '' END AS columnKey , CASE WHEN col.isnullable = 1 THEN '1' ELSE '' END AS allowNull, ISNULL(comm.text, '') AS defaultKey FROM dbo.syscolumns col LEFT JOIN dbo.systypes t ON col.xtype = t.xusertype inner JOIN dbo.sysobjects obj ON col.id = obj.id AND obj.xtype = 'U' AND obj.status >= 0 LEFT JOIN dbo.syscomments comm ON col.cdefault = comm.id LEFT JOIN sys.extended_properties ep ON col.id = ep.major_id AND col.colid = ep.minor_id AND ep.name = 'MS_Description' LEFT JOIN sys.extended_properties epTwo ON obj.id = epTwo.major_id AND epTwo.minor_id = 0 AND epTwo.name = 'MS_Description' WHERE obj.name = #{tableName} ORDER BY col.colorder
+    </select>
+</mapper>

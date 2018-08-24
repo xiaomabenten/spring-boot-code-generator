@@ -1,8 +1,10 @@
 package cc.uman.generator.service.impl;
 
+import cc.uman.generator.dao.SqlServerSysMapper;
 import cc.uman.generator.dao.SysMapper;
-import cc.uman.generator.util.GeneratorUtil;
 import cc.uman.generator.service.SysService;
+import cc.uman.generator.util.GeneratorUtil;
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ public class SysServiceImpl implements SysService {
 
     @Autowired
     private SysMapper sysMapper;
+    @Autowired
+    private SqlServerSysMapper sqlServerSysMapper;
 
     @Override
     public List<Map<String, Object>> queryList(Map<String, Object> map) {
@@ -65,7 +69,13 @@ public class SysServiceImpl implements SysService {
      * @return
      */
     public Map<String, String> queryTable(String tableName) {
-        return sysMapper.queryTable(tableName);
+        if (isMysql()) {
+            return sysMapper.queryTable(tableName);
+        } else if (isSqlServer()) {
+            return sqlServerSysMapper.queryTable(tableName);
+        } else {
+            throw new RuntimeException("请添加数据库的支持类型 如：mysql 或者 sqlserver");
+        }
     }
 
     /**
@@ -75,7 +85,41 @@ public class SysServiceImpl implements SysService {
      * @return
      */
     public List<Map<String, String>> queryColumns(String tableName) {
-        return sysMapper.queryColumns(tableName);
+        if (isMysql()) {
+            return sysMapper.queryColumns(tableName);
+        } else if (isSqlServer()) {
+            return sqlServerSysMapper.queryColumns(tableName);
+        } else {
+            throw new RuntimeException("请添加数据库的支持类型 如：mysql 或者 sqlserver");
+        }
+
+    }
+
+
+    /**
+     * 判断是不是mysql
+     *
+     * @return
+     */
+    public boolean isMysql() {
+        Configuration config = GeneratorUtil.getConfig();
+        if (config.getString("sql-type").equals("mysql")) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 判断是不是sqlserver
+     *
+     * @return
+     */
+    public boolean isSqlServer() {
+        Configuration config = GeneratorUtil.getConfig();
+        if (config.getString("sql-type").equals("sqlserver")) {
+            return true;
+        }
+        return false;
     }
 
 }
