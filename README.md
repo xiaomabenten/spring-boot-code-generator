@@ -33,14 +33,14 @@
 ```
 spring:
   datasource:
-    url: jdbc:mysql://192.168.200.22:3306/uk_arch_push?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useAffectedRows=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true
+    url: jdbc:mysql://192.168.200.21:3306/uk_arch_push?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useAffectedRows=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true
     username: root
     password: T649yrgp9a6sw2t
     type: com.alibaba.druid.pool.DruidDataSource
 #    url: jdbc:sqlserver://172.16.10.21:1433;DatabaseName=Star-main
 #    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-#    username: lingxu
-#    password: lingxu.12
+#    username: user
+#    password: password
 ```
   ## 运行项目生成文档
    * 启动项目 访问 [代码生成器地址](http://127.0.0.1:8010)
