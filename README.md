@@ -14,9 +14,9 @@
 
  * 修改generator.properties
    * moduleName = push #项目名
-   * package=com.uoko #包名
+   * package=com.4lun #包名
    * author = shaohua # 代码注释上的作者名
-   * email = shaohua@uoko.com # 开发者邮箱
+   * email = shaohua@4lun.com # 开发者邮箱
    * description=星空推广平台 # 项目描述
    * version=1.0-SNAPSHOT # 项目版本号
    * serverWebApiPort=8002 #webapi端口
